@@ -626,6 +626,7 @@ elif frames=='Video':
 elif frames=='Comment':
     display_comments()
 
+#writing the query from sql table
 query = st.selectbox(
     'let us do some analysis',
     ('None','All the videos and the Channel Name', 'Channels with most number of videos', '10 most viewed videos',
