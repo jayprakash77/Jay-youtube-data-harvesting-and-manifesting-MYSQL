@@ -586,76 +586,78 @@ with st.sidebar:
     st.caption('Python scripting')
     st.caption("Data Storing in JSON")
     st.caption("MYSQL")
-    st.caption("Inserting and storing on MYSQL")
 
-# Create tabs for different sections
-tab1, tab2, tab3 = st.tabs(["Data Collection", "SQL Migration", "Data Analysis"])
+# channel_id = Life_of_sangu,Onakennapaa
 
-# Tab 1: Data Collection
-with tab1:
-    st.header("Data Collection")
-    options = st.text_input('Enter the channel ID here', value='')
+options = st.text_input(
+    'Enter the channel ID here',
+    value = '',
+    )
 
-    if st.button("Collect and Store data"):
-        options_list = options.split(',')
-        with st.spinner('Running...'):
-            out = stored_data(options_list)
-        st.success(out)
+# st.write('You have Selected:', options)
 
-# Tab 2: SQL Migration
-with tab2:
-    st.header("SQL Migration")
-    st.write("Click here to Migrate the data in SQL tables")
+if st.button("Collect and Store data"): 
+    options_list = options.split(',')
+    with st.spinner('Running...'):
+        out = stored_data(options_list)
+    st.success(out)
+     
+    # for i in options:
+    #     # print(i)
+    #     output=stored_data(i)
+    #     st.write(output)
+
+st.write("Click here to Migrate the data in sql tables")        
+if st.button("Migrate"):
+    with st.spinner('Running...'):
+        display=tables()
+    st.success(display)
     
-    if st.button("Migrate"):
-        with st.spinner('Running...'):
-            display = tables()
-        st.success(display)
-    
-# Tab 3: Data Analysis
-with tab3:
-    st.header("Data Analysis")
-    
-    frames = st.radio("Select the table you want to view",
-                      ('None', 'Channel', 'Playlist', 'Video', 'Comment'))
+    # st.write(display)
 
-    if frames != 'None':
-        st.write(f'You selected: {frames}')
-        if frames == 'Channel':
-            display_channels()
-        elif frames == 'Playlist':
-            display_playlists()
-        elif frames == 'Video':
-            display_videos()
-        elif frames == 'Comment':
-            display_comments()
+frames = st.radio(
+     "Select the table you want to view",
+    ('None','Channel', 'Playlist', 'Video', 'Comment'))
 
-    query = st.selectbox(
-        'Let us do some analysis',
-        ('None', 'All the videos and the Channel Name', 'Channels with most number of videos',
-         '10 most viewed videos', 'Comments in each video', 'Videos with highest likes', 'likes of all videos',
-         'views of each channel', 'videos published in the year 2022', 'average duration of all videos',
-         'videos with highest number of comments'))
+st.write('You selected:', frames)
 
-    if query != 'None':
-        st.write(f'You selected: {query}')
-        if query == 'All the videos and the Channel Name':
-            oneQuery()
-        elif query == 'Channels with most number of videos':
-            twoQuery()
-        elif query == '10 most viewed videos':
-            threeQuery()
-        elif query == 'Comments in each video':
-            fourQuery()
-        elif query == 'Videos with highest likes':
-            fiveQuery()
-        elif query == 'likes of all videos':
-            sixQuery()
-        elif query == 'views of each channel':
-            sevenQuery()
-        elif query == 'videos published in the year 2022':
-            eightQuery()
-        elif query == 'average duration of all videos':
-            nineQuery()
-        elif query == 'videos with highest number of comments':
-            tenQuery()
+if frames=='None':
+    st.write("select a table")
+elif frames=='Channel':
+    display_channels()
+elif frames=='Playlist':
+    display_playlists()
+elif frames=='Video':
+    display_videos()
+elif frames=='Comment':
+    display_comments()
+
+#writing the query from sql table
+query = st.selectbox(
+    'let us do some analysis',
+    ('None','All the videos and the Channel Name', 'Channels with most number of videos', '10 most viewed videos',
+     'Comments in each video','Videos with highest likes', 'likes of all videos', 'views of each channel',
+     'videos published in the year 2022','average duration of all videos', 'videos with highest number of comments'))
+
+if query=='None':
+    st.write("you selected None")
+elif query=='All the videos and the Channel Name':
+    oneQuery()
+elif query=='Channels with most number of videos':
+    twoQuery()
+elif query=='10 most viewed videos':
+    threeQuery()
+elif query=='Comments in each video':
+    fourQuery()
+elif query=='Videos with highest likes':
+    fiveQuery()
+elif query=='likes of all videos':
+    sixQuery()
+elif query=='views of each channel':
+    sevenQuery()
+elif query=='videos published in the year 2022':
+    eightQuery()
+elif query=='average duration of all videos':
+    nineQuery()
+elif query=='videos with highest number of comments':
+    tenQuery()
