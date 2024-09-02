@@ -8,12 +8,12 @@ import time
 import pprint
 
 #this is the api key we can get it from google api clients
-api_key = 'AIzaSyARd1FJD4fht9kjzwZPcsLIYcwrI8g0iGY'
+api_key = 'api key'
 #connecting our python to mysql using mysql connecter
 con = mysql.connector.connect(
     host = "localhost",
     user = "root",
-    password = "Sk@29101999"
+    password = "password"
 )
 cursor = con.cursor()
 #creating one database to store the data
